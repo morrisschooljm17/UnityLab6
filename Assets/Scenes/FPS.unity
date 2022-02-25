@@ -414,9 +414,9 @@ MonoBehaviour:
   shootPosition: {fileID: 1311159026}
   head: {fileID: 2065295680}
   bullets:
-  - {fileID: 1867533466708899518, guid: ee80f7ed4b345bd448beda4680e68c71, type: 3}
-  - {fileID: 1867533466708899518, guid: ee80f7ed4b345bd448beda4680e68c71, type: 3}
-  - {fileID: 1867533466708899518, guid: ee80f7ed4b345bd448beda4680e68c71, type: 3}
+  - {fileID: 3498860930170353159, guid: 708dee2822707984f9d108073d02c862, type: 3}
+  - {fileID: 3498860930170353159, guid: 708dee2822707984f9d108073d02c862, type: 3}
+  - {fileID: 3498860930170353159, guid: 708dee2822707984f9d108073d02c862, type: 3}
   shootSound: {fileID: 0}
   maxHealth: 0
 --- !u!1 &1311159025
