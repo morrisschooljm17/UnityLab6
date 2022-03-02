@@ -9,10 +9,32 @@ public class FPSPlayer : MonoBehaviour
     [SerializeField] private Transform head;
     [SerializeField] private GameObject[] bullets;
     [SerializeField] private AudioSource shootSound;
-    //[SerializeField] private FPSUI fpsUI;
+    [SerializeField] private FPSUI fpsUI;
     [SerializeField] private int maxHealth;
     private float lastHitTime;
     private int health;
+
+    public static FPSPlayer instance;
+
+
+    private int enemyDefeatCount;
+    public void HandleEnemyDefeat()
+    {
+        enemyDefeatCount++;
+        fpsUI.ShowEnemyDefeatCount(enemyDefeatCount);
+    }
+
+
+    public bool ShouldSpawn(Vector3 pos)
+    {
+        Vector3 posDiff = pos - transform.position;
+
+        Vector3 faceDirection = head.forward;
+
+        float distanceFromPlayer = posDiff.magnitude;
+
+        return (Vector3.Dot(posDiff.normalized, faceDirection) < 0.5f) && (distanceFromPlayer > 10f);
+    }
 
 
     private int Health
@@ -24,7 +46,7 @@ public class FPSPlayer : MonoBehaviour
         set
         {
             health = value;
-            //fpsUI.ShowHealthFraction((float)Health / (float)maxHealth);
+            fpsUI.ShowHealthFraction((float)Health / (float)maxHealth);
             if (health <= 0)
             {
                 LoadingScreen.LoadScene("MainMenu");
@@ -47,9 +69,10 @@ public class FPSPlayer : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        instance = this;
+        Health = maxHealth;
     }
 
     // Update is called once per frame
